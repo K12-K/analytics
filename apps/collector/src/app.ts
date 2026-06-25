@@ -2,6 +2,8 @@ import Fastify from "fastify";
 import cors from "@fastify/cors";
 import { collectRoute } from "./routes/collect";
 import { statsRoute } from "./routes/stats";
+import { pagesRoute } from "./routes/pages";
+import { countriesRoute } from "./routes/countries";
 
 export const app = Fastify({
   logger: true,
@@ -15,3 +17,5 @@ app.register(cors, {
 
 app.register(collectRoute);
 app.register(statsRoute);
+app.register(pagesRoute);
+app.register(countriesRoute);

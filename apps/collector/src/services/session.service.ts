@@ -25,6 +25,8 @@ export async function findOrCreateSession(
     .values({
       id: sessionToken || randomUUID(),
       visitorId,
+      country: "Unknown",
+      city: "Unknown",
       browser: parsed.browser.name || null,
       os: parsed.os.name || null,
       device: parsed.device.type || "desktop",
