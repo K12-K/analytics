@@ -22,10 +22,15 @@ export async function collectRoute(app: FastifyInstance) {
       body.visitorToken
     );
 
+    // REMOVE THEN, clientIp, FOR TESTING, SINCE LOCALHOST CAN"T PROVICE IP ADD, FASTILY WILL PROVIDE IP ON SERVER
+    const clientIp = request.ip === "127.0.0.1" || request.ip === "::1" ? "8.8.8.8" : request.ip;
+
     const session = await findOrCreateSession(
       visitor.id,
       body.sessionToken,
-      request.headers["user-agent"]
+      request.headers["user-agent"],
+      // request.ip
+      clientIp
     );
 
     const event = await createEvent({

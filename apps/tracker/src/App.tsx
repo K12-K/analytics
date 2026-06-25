@@ -11,7 +11,7 @@ function App() {
   useEffect(() => {
     tracker.init({
       siteId: "3284a051-6598-481b-8257-70b41af903b4",
-      endpoint: "http://localhost:4000",
+      endpoint: import.meta.env.VITE_API_URL,
     });
   }, []);
 
