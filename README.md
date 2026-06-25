@@ -12,6 +12,6 @@ TO CONNECT CREATE AND MIGRATE DATABASE
 pnpm --filter @analytics/db generate
 pnpm --filter @analytics/db migrate
 
-TO CREATE AND RUN DASHBOARD SITE
-pnpm create vite apps/dashboard
-pnpm --filter dashboard dev
+TO CREATE AND RUN TRACKER SITE
+pnpm create vite apps/tracker
+pnpm --filter tracker dev
