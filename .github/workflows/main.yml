@@ -50,8 +50,11 @@ jobs:
     
       - run: npm i -g @railway/cli
 
-      - run: |
-          cd apps/collector
-          railway up --project ${{ secrets.RAILWAY_PROJECT_ID }} --environment production
+      - name: Railway Login (CI mode)
+        run: railway login --browserless
         env:
           RAILWAY_TOKEN: ${{ secrets.RAILWAY_TOKEN }}
+
+      - run: |
+          cd apps/collector
+          railway up
