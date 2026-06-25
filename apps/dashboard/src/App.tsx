@@ -1,130 +1,62 @@
-import { useEffect, useState } from 'react'
-import { tracker } from "@analytics/tracker-sdk";
-import reactLogo from './assets/react.svg'
-import viteLogo from './assets/vite.svg'
-import heroImg from './assets/hero.png'
-import './App.css'
+import { useEffect, useState } from "react";
+
+type Overview = {
+  visitors: number;
+  sessions: number;
+  events: number;
+};
+
+type EventItem = {
+  id: string;
+  eventType: string;
+  path: string | null;
+  createdAt: string;
+};
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [overview, setOverview] = useState<Overview | null>(null);
+  const [events, setEvents] = useState<EventItem[]>([]);
 
   useEffect(() => {
-    tracker.init({
-      siteId: "3284a051-6598-481b-8257-70b41af903b4",
-      endpoint: "http://localhost:4000",
-    });
+    async function load() {
+      const stats = await fetch("http://localhost:4000/stats").then((r) =>
+        r.json()
+      );
+
+      const recent = await fetch("http://localhost:4000/events").then((r) =>
+        r.json()
+      );
+
+      setOverview(stats);
+      setEvents(recent);
+    }
+
+    load();
   }, []);
 
   return (
-    <>
-      <section id="center">
-        <div className="hero">
-          <img src={heroImg} className="base" width="170" height="179" alt="" />
-          <img src={reactLogo} className="framework" alt="React logo" />
-          <img src={viteLogo} className="vite" alt="Vite logo" />
-        </div>
-        <div>
-          <h1>Get started</h1>
+    <div style={{ padding: 30 }}>
+      <h1>Analytics Dashboard</h1>
+
+      {overview && (
+        <>
+          <p>Visitors: {overview.visitors}</p>
+          <p>Sessions: {overview.sessions}</p>
+          <p>Events: {overview.events}</p>
+        </>
+      )}
+
+      <h2>Recent Events</h2>
+
+      {events.map((event) => (
+        <div key={event.id}>
           <p>
-            Edit <code>src/App.tsx</code> and save to test <code>HMR</code>
+            {event.eventType} — {event.path}
           </p>
         </div>
-        <button
-          type="button"
-          className="counter"
-          onClick={() => setCount((count) => count + 1)}
-        >
-          Count is {count}
-        </button>
-      </section>
-
-      <div className="ticks"></div>
-
-      <section id="next-steps">
-        <div id="docs">
-          <svg className="icon" role="presentation" aria-hidden="true">
-            <use href="/icons.svg#documentation-icon"></use>
-          </svg>
-          <h2>Documentation</h2>
-          <p>Your questions, answered</p>
-          <ul>
-            <li>
-              <a href="https://vite.dev/" target="_blank">
-                <img className="logo" src={viteLogo} alt="" />
-                Explore Vite
-              </a>
-            </li>
-            <li>
-              <a href="https://react.dev/" target="_blank">
-                <img className="button-icon" src={reactLogo} alt="" />
-                Learn more
-              </a>
-            </li>
-          </ul>
-        </div>
-        <div id="social">
-          <svg className="icon" role="presentation" aria-hidden="true">
-            <use href="/icons.svg#social-icon"></use>
-          </svg>
-          <h2>Connect with us</h2>
-          <p>Join the Vite community</p>
-          <ul>
-            <li>
-              <a href="https://github.com/vitejs/vite" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#github-icon"></use>
-                </svg>
-                GitHub
-              </a>
-            </li>
-            <li>
-              <a href="https://chat.vite.dev/" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#discord-icon"></use>
-                </svg>
-                Discord
-              </a>
-            </li>
-            <li>
-              <a href="https://x.com/vite_js" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#x-icon"></use>
-                </svg>
-                X.com
-              </a>
-            </li>
-            <li>
-              <a href="https://bsky.app/profile/vite.dev" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#bluesky-icon"></use>
-                </svg>
-                Bluesky
-              </a>
-            </li>
-          </ul>
-        </div>
-      </section>
-
-      <div className="ticks"></div>
-      <section id="spacer"></section>
-    </>
-  )
+      ))}
+    </div>
+  );
 }
 
-export default App
+export default App;
