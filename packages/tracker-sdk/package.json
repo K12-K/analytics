@@ -1,0 +1,20 @@
+{
+  "name": "@analytics/tracker-sdk",
+  "version": "1.0.0",
+  "main": "src/index.ts",
+  "description": "",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "module",
+  "dependencies": {
+    "js-cookie": "^3.0.8"
+  },
+  "devDependencies": {
+    "@types/js-cookie": "^3.0.6",
+    "typescript": "^6.0.3"
+  }
+}

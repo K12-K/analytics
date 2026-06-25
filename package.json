@@ -1,0 +1,31 @@
+{
+  "name": "analytics",
+  "private": true,
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ],
+
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "db:migrate": "pnpm --filter @analytics/db migrate",
+    "db:generate": "pnpm --filter @analytics/db generate"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devEngines": {
+    "packageManager": {
+      "name": "pnpm",
+      "version": "^11.9.0",
+      "onFail": "download"
+    }
+  },
+  "type": "module",
+  "devDependencies": {
+    "turbo": "^2.9.18",
+    "typescript": "^6.0.3"
+  }
+}
