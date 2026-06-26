@@ -1,3 +1,24 @@
+# -----------------------------------------------------------------------------
+# Railway / Nixpacks configuration
+#
+# Why this file exists:
+# This repository is a pnpm monorepo that uses workspace dependencies
+# (e.g. "@analytics/db": "workspace:*").
+#
+# By default, Railway's Nixpacks may detect npm and run `npm install`, which
+# does not understand `workspace:*` dependencies and causes the build to fail.
+#
+# This file explicitly tells Railway to:
+#   1. Enable Corepack.
+#   2. Activate pnpm.
+#   3. Install dependencies using pnpm.
+#   4. Start the collector service.
+#
+# NOTE:
+# - This file is ONLY used by Railway (Nixpacks).
+# - Vercel, GitHub Actions, and local development ignore this file.
+# -----------------------------------------------------------------------------
+
 [variables]
 NODE_ENV = "production"
 
