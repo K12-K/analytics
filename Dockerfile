@@ -57,7 +57,7 @@ COPY . .
 # RUN corepack prepare pnpm@10.33.4 --activate && \
 #     pnpm install --frozen-lockfile
 RUN npm install -g pnpm@10.33.4 && \
-    pnpm install --frozen-lockfile
+    pnpm install
 
 # Build only the collector service using Turborepo filter
 RUN pnpm turbo run build --filter=@analytics/collector
