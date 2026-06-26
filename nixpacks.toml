@@ -23,7 +23,7 @@
 NODE_ENV = "production"
 
 [phases.setup]
-nixPkgs = ["nodejs"]
+nixPkgs = ["nodejs", "npm"]
 
 [phases.install]
 cmds = [
