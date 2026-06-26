@@ -1,4 +1,4 @@
-import "./env.config";
+// import "./env.config";
 import { app } from "./app";
 
 async function start() {
