@@ -5,8 +5,7 @@
   "description": "",
   "scripts": {
     "dev": "tsx watch src/server.ts",
-    "start": "tsx src/server.ts",
-    "build": "tsc"
+    "start": "tsx src/server.ts"
   },
   "keywords": [],
   "author": "",
