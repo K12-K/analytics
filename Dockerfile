@@ -48,13 +48,15 @@ FROM node:20-alpine
 WORKDIR /app
 
 # Enable Corepack (safe inside Docker Node image)
-RUN corepack enable
+# RUN corepack enable
 
 # Copy entire monorepo into container
 COPY . .
 
 # Install pnpm dependencies (monorepo-aware)
-RUN corepack prepare pnpm@10.33.4 --activate && \
+# RUN corepack prepare pnpm@10.33.4 --activate && \
+#     pnpm install --frozen-lockfile
+RUN npm install -g pnpm@10.33.4 && \
     pnpm install --frozen-lockfile
 
 # Build only the collector service using Turborepo filter
