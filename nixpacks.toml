@@ -23,12 +23,12 @@
 NODE_ENV = "production"
 
 [phases.setup]
-nixPkgs = ["nodejs"]
+nixPkgs = ["nodejs", "npm"]
 
 [phases.install]
 cmds = [
-  "corepack enable",
-  "corepack prepare pnpm@10.33.4 --activate",
+  "npm install -g pnpm@10.33.4",
+  "pnpm config set node-linker hoisted",
   "pnpm install --frozen-lockfile"
 ]
 
