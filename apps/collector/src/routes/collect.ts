@@ -26,7 +26,9 @@ export async function collectRoute(app: FastifyInstance) {
     // const clientIp = request.ip === "127.0.0.1" || request.ip === "::1" ? "8.8.8.8" : request.ip;
     const clientIp = request.headers["x-forwarded-for"]?.toString().split(",")[0] || request.ip;
     console.log({
-      ip,
+      clientIp,
+      ip: request.ip,
+      cf: request.headers["cf-connecting-ip"],
       forwarded: request.headers["x-forwarded-for"]
     });
 
