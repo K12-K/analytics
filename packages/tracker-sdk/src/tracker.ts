@@ -17,7 +17,7 @@ class Tracker {
 
     let visitorToken = getCookie("vid");
     // let sessionToken = getCookie("sid");
-    const sessionToken = getOrCreateSession();
+    getOrCreateSession();
 
     if (!visitorToken) {
       visitorToken = generateId();
