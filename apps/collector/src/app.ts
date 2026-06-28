@@ -11,7 +11,7 @@ export const app = Fastify({
 
 // ✅ ADD THIS
 app.register(cors, {
-  origin: ["http://localhost:5173","http://localhost:5174"],
+  origin: ["http://localhost:5173","http://localhost:5174","https://dashboard-analytics-plat.vercel.app"],
   credentials: true,
 });
 
