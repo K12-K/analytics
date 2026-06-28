@@ -59,6 +59,9 @@ COPY . .
 RUN npm install -g pnpm && \
     pnpm install
 
+# build DB first
+RUN pnpm --filter @analytics/db build
+
 # Build only the collector service using Turborepo filter
 # RUN pnpm turbo run build --filter=@analytics/collector
 RUN pnpm --filter @analytics/collector build

@@ -4,7 +4,8 @@
   "main": "src/index.ts",
   "scripts": {
     "generate": "drizzle-kit generate",
-    "migrate": "dotenv -e ../../.env -- drizzle-kit migrate"
+    "migrate": "dotenv -e ../../.env -- drizzle-kit migrate",
+    "build": "tsc"
   },
   "description": "",
   "keywords": [],
