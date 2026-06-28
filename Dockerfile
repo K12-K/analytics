@@ -42,7 +42,7 @@
 #   ✔ reproducible production builds
 # -----------------------------------------------------------------------------
 
-FROM node:20-alpine
+FROM node:24-alpine
 
 # Create app directory inside container (NOT system root)
 WORKDIR /app
@@ -56,7 +56,7 @@ COPY . .
 # Install pnpm dependencies (monorepo-aware)
 # RUN corepack prepare pnpm@10.33.4 --activate && \
 #     pnpm install --frozen-lockfile
-RUN npm install -g pnpm@10.33.4 && \
+RUN npm install -g pnpm && \
     pnpm install
 
 # Build only the collector service using Turborepo filter
