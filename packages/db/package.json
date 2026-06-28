@@ -9,7 +9,7 @@
   "scripts": {
     "generate": "drizzle-kit generate",
     "migrate": "dotenv -e ../../.env -- drizzle-kit migrate",
-    "build": "tsc"
+    "build": "tsup src/index.ts --format esm --out-dir dist"
   },
   "description": "",
   "keywords": [],
@@ -24,6 +24,7 @@
   "devDependencies": {
     "@types/pg": "^8.20.0",
     "drizzle-kit": "^0.31.10",
+    "tsup": "^8.5.1",
     "tsx": "^4.22.4",
     "typescript": "^6.0.3"
   }
