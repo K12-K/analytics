@@ -23,7 +23,12 @@ export async function collectRoute(app: FastifyInstance) {
     );
 
     // REMOVE THEN, clientIp, FOR TESTING, SINCE LOCALHOST CAN"T PROVICE IP ADD, FASTILY WILL PROVIDE IP ON SERVER
-    const clientIp = request.ip === "127.0.0.1" || request.ip === "::1" ? "8.8.8.8" : request.ip;
+    // const clientIp = request.ip === "127.0.0.1" || request.ip === "::1" ? "8.8.8.8" : request.ip;
+    const clientIp = request.headers["x-forwarded-for"]?.toString().split(",")[0] || request.ip;
+    console.log({
+      ip,
+      forwarded: request.headers["x-forwarded-for"]
+    });
 
     const session = await findOrCreateSession(
       visitor.id,

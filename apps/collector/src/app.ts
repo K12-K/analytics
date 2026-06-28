@@ -7,6 +7,7 @@ import { countriesRoute } from "./routes/countries";
 
 export const app = Fastify({
   logger: true,
+  trustProxy: true,
 });
 
 // ✅ ADD THIS
