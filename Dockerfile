@@ -60,7 +60,8 @@ RUN npm install -g pnpm@10.33.4 && \
     pnpm install
 
 # Build only the collector service using Turborepo filter
-RUN pnpm turbo run build --filter=@analytics/collector
+# RUN pnpm turbo run build --filter=@analytics/collector
 
 # Start compiled JS (NOT tsx, NOT dev server)
-CMD ["node", "apps/collector/dist/server.js"]
+# CMD ["node", "apps/collector/dist/server.js"]
+CMD ["pnpm", "--filter", "@analytics/collector", "start"]
