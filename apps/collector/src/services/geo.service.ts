@@ -37,14 +37,14 @@ type GeoResult = {
 
 export async function getGeo(ip: string) {
   try {
-    console.log("IP,", ip)
+    // console.log("IP,", ip)
     const response = await fetch(
       `https://geo.ipify.org/api/v2/country,city?apiKey=at_nQO3xo6c56S1U3qiNvKHcNATaldtA&ipAddress=${ip}`
     );
-    console.log("Response,", response)
+    // console.log("Response,", response)
 
     const data = (await response.json()) as GeoResult;
-    console.log("Data,", data)
+    // console.log("Data,", data)
 
     return {
       country: data?.location?.country || "Unknown",
