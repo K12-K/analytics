@@ -21,6 +21,7 @@ export const events = pgTable("events", {
     .references(() => sessions.id)
     .notNull(),
   eventType: text("event_type").notNull(),
+  source: text("source"),
   path: text("path"),
   referrer: text("referrer"),
   payload: jsonb("payload"),
