@@ -4,6 +4,7 @@ import { collectRoute } from "./routes/collect";
 import { statsRoute } from "./routes/stats";
 import { pagesRoute } from "./routes/pages";
 import { countriesRoute } from "./routes/countries";
+import { sourcesRoute } from "./routes/sources";
 
 export const app = Fastify({
   logger: true,
@@ -20,3 +21,4 @@ app.register(collectRoute);
 app.register(statsRoute);
 app.register(pagesRoute);
 app.register(countriesRoute);
+app.register(sourcesRoute);

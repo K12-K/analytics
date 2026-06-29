@@ -1,5 +1,6 @@
 import { db, events } from "@analytics/db";
 import { randomUUID } from "crypto";
+import { classifySource } from "./source.service";
 
 type CreateEventInput = {
   siteId: string;
@@ -12,10 +13,12 @@ type CreateEventInput = {
 };
 
 export async function createEvent(input: CreateEventInput) {
+  const source = classifySource(input.referrer);
   const created = await db
     .insert(events)
     .values({
       id: randomUUID(),
+      source,
       ...input,
     })
     .returning();
